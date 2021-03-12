@@ -1,10 +1,8 @@
 module Onfido
   class Address < Resource
     def all(postcode)
-      get(
-        url: url_for('addresses/pick'),
-        payload: { postcode: postcode.delete(' ') }
-      )
+      query_string = "postcode=#{postcode.delete(' ')}"
+      get(url: url_for("addresses/pick?#{query_string}"))
     end
   end
 end
